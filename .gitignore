@@ -3,6 +3,11 @@
 mjpro150_linux
 PhysicalEngine
 MUJOCO_LOG.TXT
+models/
+expert_data/
+
+
+**/logfile
 
 
 # Byte-compiled / optimized / DLL files
