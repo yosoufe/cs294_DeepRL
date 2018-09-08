@@ -309,7 +309,8 @@ class Agent(object):
             #====================================================================================#
             raise NotImplementedError
             ac = None # YOUR CODE HERE
-            acs.append(ac[0])
+            ac = ac[0]
+            acs.append(ac)
             ob, rew, done, _ = env.step(ac)
             rewards.append(rew)
             steps += 1
@@ -658,6 +659,8 @@ def main():
 
     max_path_length = args.ep_len if args.ep_len > 0 else None
 
+    processes = []
+
     for e in range(args.n_experiments):
         seed = args.seed + 10*e
         print('Running experiment with seed %d'%seed)
@@ -684,8 +687,13 @@ def main():
         # # repeatedly calling train_PG in the same thread.
         p = Process(target=train_func, args=tuple())
         p.start()
+        processes.append(p)
+        # if you comment in the line below, then the loop will block 
+        # until this process finishes
+        # p.join()
+
+    for p in processes:
         p.join()
-        
 
 if __name__ == "__main__":
     main()
