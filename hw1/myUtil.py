@@ -62,5 +62,3 @@ if __name__ == "__main__":
 	model = "Humanoid-v2"
 	x_mean, x_std, y_mean, y_std = load_normalization(model)
 	print (y_std.shape)
-
-print("Hello from here")
